@@ -1,0 +1,134 @@
+<html>
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Отзывы&nbsp;📃</title>
+<style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center; /* Добавлено для центрирования */
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            text-align: center; /* Добавлено для выравнивания по левому краю */
+			background-color: black	; /* Фоновый цвет списка */
+            padding: 5px; /* Добавлено для отступов */
+			margin-left: -3px;
+			margin-top: 2px; 
+			width: 572px;
+			border: 0px solid gray;
+			background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+		
+  form {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+  }
+
+  input[type="text"], textarea {
+    padding: 0.5em;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2em;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  button[type="button"] {
+    background-color: #0077FF;
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 4px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  button[type="button"]:hover {
+    background-color: #0066CC;
+  }
+  
+  ul {
+  margin-left: 170px;
+}
+</style>
+<script>
+function submitReview() {
+  // Получаем значения никнейма и отзыва из формы
+  var nickname = document.getElementById("nickname").value;
+  var review = document.getElementById("review").value;
+
+  // Проверяем, что поля заполнены
+  if (!nickname || !review) {
+    alert("Пожалуйста, заполните все поля.");
+    return;
+  }
+
+  // Получаем текущую дату и время
+  var date = new Date();
+  var dateStr = date.toLocaleDateString();
+  var timeStr = date.toLocaleTimeString();
+
+  // Создаем элемент списка для отзыва и добавляем его на страницу
+  var li = document.createElement("li");
+  var nicknameText = document.createTextNode(nickname + ":");
+  var dateText = document.createTextNode("(" + timeStr + " / " + dateStr + ") ");
+ var reviewText = document.createTextNode(" " + review);
+  li.appendChild(dateText);
+  li.appendChild(nicknameText);
+  li.appendChild(reviewText);
+  document.getElementById("reviews").appendChild(li);
+
+  // Очищаем форму после отправки отзыва
+  document.getElementById("nickname").value = "";
+  document.getElementById("review").value = "";
+}
+</script>
+</head>
+<body link="black">
+<table align=center border=0 bordercolor=black cellspacing=0 cellpadding=2 width=90% style="border-width: 0px;">
+<tr>
+<td style="background-color:#F08080" width="33%" align=center onclick="window.location.href='device_select.html';"><font color=white size=5 face=calibri>ГЛАВНАЯ</td>
+<td style="background-color:#90EE90" width="100%" class="dropdown">
+        <span><font face=calibri color=white size=5>УСТРОЙСТВА</span>
+        <div class="dropdown-content">
+            <a href="mouse.html">Мышь</a><br>
+            <a href="keyboard.html">Клавиатура</a><br>
+            <a href="monitor.html">Монитор</a><br>
+            <a href="microphone.html">Микрофон</a><br>
+            <a href="headset.html">Наушники</a><br></div></td>
+<td style="background-color:#00CED1" width="33%" align=center onclick="window.location.href='ya.html';"><font color=white size=5 face=calibri>ОБ АВТОРЕ</td> 
+</tr>
+</table>
+<br>
+<br>
+<div>
+  <form>
+    <label for="nickname"><font size=+2 face=calibri>Ваш никнейм:</label>
+    <input type="text" id="nickname" name="nickname">
+    <textarea id="review" name="review" rows="4" cols="50"></textarea><br><br>
+    <button type="button" onclick="submitReview()"><font size=5 face=calibri>Отправить</button>
+  </form>
+</div>
+
+<div>
+  <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отзывы пользователей</h2>
+  <ul id="reviews"></ul>
+</div>
+</body>
+</html>
